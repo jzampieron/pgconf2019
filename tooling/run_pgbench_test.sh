@@ -24,6 +24,8 @@ BASEDIR=`dirname $0`
 # include common
 . ${BASEDIR}/vars.inc || die "Failed to include common setup."
 
+CORES=4
+
 # Setup env variables per libpq.
 # See: https://www.postgresql.org/docs/9.5/libpq-envars.html
 docker run \
@@ -33,4 +35,4 @@ docker run \
        -e "PGPORT=${SRV_PORT}" \
        -e "PGPASSWORD=${PGPASS}" \
        -it postgres:${PG_VER} \
-       pgbench -U ${PGUSER} -P 10 -r -c 100 -j 16 -T 600 bench2
+       pgbench -U ${PGUSER} -P 10 -r -c 100 -j ${CORES} -T 600 bench2
