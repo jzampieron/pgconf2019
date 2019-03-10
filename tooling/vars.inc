@@ -35,5 +35,5 @@ SRV_PORT=5432
 # We split the data and WAL Logs, as is typical for
 # optimized postgres installs.
 #
-DATA_DIR=$HOME/pgtest/data
-LOG_DIR=$HOME/pgtest/logs
+DATA_DIR=/pgdata/data
+LOG_DIR=/pgdata/logs
