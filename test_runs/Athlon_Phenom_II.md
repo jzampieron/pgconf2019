@@ -7,7 +7,7 @@ Kubutu 18.04.1
 | Model Name            | Custom		       |
 | Model Identifier      | AMD Athlon		       |
 | Processor Name        | AMD Athlon Phenom II X4 965  |
-| Processor Speed       | 800 MHz        |
+| Processor Speed       | 3.4 GHz        |
 | Number of Processors  | 1              |
 | Total Number of Cores | 4              |
 | Memory                | 8 GB           |
