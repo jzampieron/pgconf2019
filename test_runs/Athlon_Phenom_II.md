@@ -59,6 +59,169 @@ tps = 337.466603 (including connections establishing)
 tps = 337.468786 (excluding connections establishing)
 ```
 
+### Results - fio - Sync Heavy ###
+
+```
+jzampieron@atlas:~/Documents/Speaking/pgconf2019/tooling$ ./run_fio_sync_heavy.sh 
+test-randwrite: (g=0): rw=randwrite, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=8
+...
+fio-3.1
+Starting 64 processes
+test-randwrite: Laying out IO file (1 file / 5120MiB)
+Jobs: 64 (f=64): [w(64)][100.0%][r=0KiB/s,w=712KiB/s][r=0,w=178 IOPS][eta 00m:00s] 
+test-randwrite: (groupid=0, jobs=64): err= 0: pid=20345: Sun Mar 10 20:29:42 2019
+  write: IOPS=568, BW=2274KiB/s (2328kB/s)(67.4MiB/30358msec)
+    slat (usec): min=4, max=2921.3k, avg=48969.75, stdev=204387.13
+    clat (usec): min=201, max=11205k, avg=800551.47, stdev=1093843.00
+     lat (usec): min=239, max=11205k, avg=849523.38, stdev=1142388.02
+    clat percentiles (usec):
+     |  1.00th=[     594],  5.00th=[  139461], 10.00th=[  173016],
+     | 20.00th=[  210764], 30.00th=[  320865], 40.00th=[  362808],
+     | 50.00th=[  417334], 60.00th=[  517997], 70.00th=[  608175],
+     | 80.00th=[  826278], 90.00th=[ 2298479], 95.00th=[ 3573548],
+     | 99.00th=[ 5200937], 99.50th=[ 6006244], 99.90th=[ 7482639],
+     | 99.95th=[ 8925479], 99.99th=[11207181]
+   bw (  KiB/s): min=    7, max=  200, per=2.52%, avg=57.34, stdev=37.11, samples=2345
+   iops        : min=    1, max=   50, avg=14.29, stdev= 9.24, samples=2345
+  lat (usec)   : 250=0.06%, 500=0.58%, 750=0.76%, 1000=0.23%
+  lat (msec)   : 2=0.70%, 4=0.58%, 10=0.06%, 20=0.08%, 50=0.38%
+  lat (msec)   : 100=0.37%, 250=20.64%, 500=32.93%, 750=20.15%, 1000=5.04%
+  lat (msec)   : 2000=6.60%, >=2000=10.84%
+  cpu          : usr=0.01%, sys=0.08%, ctx=18686, majf=0, minf=739
+  IO depths    : 1=0.4%, 2=0.7%, 4=1.5%, 8=97.4%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=99.6%, 8=0.4%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwt: total=0,17255,0, short=0,0,0, dropped=0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=8
+
+Run status group 0 (all jobs):
+  WRITE: bw=2274KiB/s (2328kB/s), 2274KiB/s-2274KiB/s (2328kB/s-2328kB/s), io=67.4MiB (70.7MB), run=30358-30358msec
+
+Disk stats (read/write):
+  sdc: ios=0/21311, merge=0/1334, ticks=0/598592, in_queue=599040, util=98.74%
+```
+
+### Results - fio - Sync Heavy - Large Block ###
+
+```
+jzampieron@atlas:~/Documents/Speaking/pgconf2019/tooling$ ./run_fio_sync_heavy_lb.sh 
+test-randwrite: (g=0): rw=randwrite, bs=(R) 64.0KiB-64.0KiB, (W) 64.0KiB-64.0KiB, (T) 64.0KiB-64.0KiB, ioengine=libaio, iodepth=8
+...
+fio-3.1
+Starting 64 processes
+Jobs: 64 (f=64): [w(64)][100.0%][r=0KiB/s,w=21.5MiB/s][r=0,w=344 IOPS][eta 00m:00s]
+test-randwrite: (groupid=0, jobs=64): err= 0: pid=20688: Sun Mar 10 20:31:10 2019
+  write: IOPS=349, BW=21.8MiB/s (22.9MB/s)(662MiB/30304msec)
+    slat (usec): min=8, max=3317.4k, avg=94870.77, stdev=261947.47
+    clat (usec): min=241, max=7179.9k, avg=1276180.74, stdev=899534.67
+     lat (usec): min=479, max=7180.0k, avg=1371053.82, stdev=946050.86
+    clat percentiles (usec):
+     |  1.00th=[    799],  5.00th=[ 219153], 10.00th=[ 413139],
+     | 20.00th=[ 566232], 30.00th=[ 742392], 40.00th=[ 910164],
+     | 50.00th=[1115685], 60.00th=[1283458], 70.00th=[1484784],
+     | 80.00th=[1887437], 90.00th=[2399142], 95.00th=[2969568],
+     | 99.00th=[4529849], 99.50th=[5133829], 99.90th=[6140462],
+     | 99.95th=[6543115], 99.99th=[7147095]
+   bw (  KiB/s): min=  127, max= 2056, per=2.42%, avg=540.21, stdev=371.42, samples=2411
+   iops        : min=    1, max=   32, avg= 8.36, stdev= 5.76, samples=2411
+  lat (usec)   : 250=0.02%, 500=0.19%, 750=0.60%, 1000=0.65%
+  lat (msec)   : 2=0.74%, 4=0.83%, 10=0.48%, 20=0.09%, 50=0.19%
+  lat (msec)   : 100=0.31%, 250=0.98%, 500=11.27%, 750=14.02%, 1000=15.41%
+  lat (msec)   : 2000=36.44%, >=2000=17.79%
+  cpu          : usr=0.01%, sys=0.06%, ctx=12490, majf=0, minf=674
+  IO depths    : 1=0.6%, 2=1.2%, 4=2.4%, 8=95.8%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=99.4%, 8=0.6%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwt: total=0,10586,0, short=0,0,0, dropped=0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=8
+
+Run status group 0 (all jobs):
+  WRITE: bw=21.8MiB/s (22.9MB/s), 21.8MiB/s-21.8MiB/s (22.9MB/s-22.9MB/s), io=662MiB (694MB), run=30304-30304msec
+
+Disk stats (read/write):
+  sdc: ios=3/13109, merge=3/21109, ticks=136/810720, in_queue=810812, util=99.42%
+
+```
+
+### Results - fio - Async ###
+
+```
+jzampieron@atlas:~/Documents/Speaking/pgconf2019/tooling$ ./run_fio_async.sh 
+test-randwrite: (g=0): rw=randwrite, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=128
+fio-3.1
+Starting 1 process
+test-randwrite: Laying out IO file (1 file / 5120MiB)
+Jobs: 1 (f=1): [F(1)][100.0%][r=0KiB/s,w=676KiB/s][r=0,w=169 IOPS][eta 00m:00s] 
+test-randwrite: (groupid=0, jobs=1): err= 0: pid=20778: Sun Mar 10 20:32:19 2019
+  write: IOPS=403, BW=1612KiB/s (1651kB/s)(48.8MiB/30970msec)
+    slat (usec): min=6, max=361404, avg=313.39, stdev=3422.28
+    clat (usec): min=1136, max=1756.7k, avg=315188.70, stdev=303102.32
+     lat (usec): min=1162, max=1756.8k, avg=315503.02, stdev=303188.16
+    clat percentiles (msec):
+     |  1.00th=[    9],  5.00th=[   29], 10.00th=[   45], 20.00th=[   75],
+     | 30.00th=[  107], 40.00th=[  138], 50.00th=[  186], 60.00th=[  275],
+     | 70.00th=[  401], 80.00th=[  558], 90.00th=[  776], 95.00th=[  944],
+     | 99.00th=[ 1284], 99.50th=[ 1385], 99.90th=[ 1569], 99.95th=[ 1620],
+     | 99.99th=[ 1737]
+   bw (  KiB/s): min=    8, max= 4928, per=100.00%, avg=1620.59, stdev=1019.96, samples=61
+   iops        : min=    2, max= 1232, avg=405.15, stdev=254.99, samples=61
+  lat (msec)   : 2=0.06%, 4=0.22%, 10=0.91%, 20=1.55%, 50=8.67%
+  lat (msec)   : 100=16.65%, 250=29.85%, 500=18.48%, 750=12.77%, 1000=6.98%
+  lat (msec)   : 2000=3.87%
+  cpu          : usr=0.61%, sys=2.76%, ctx=11688, majf=0, minf=8
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=0.3%, >=64=99.5%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.1%
+     issued rwt: total=0,12484,0, short=0,0,0, dropped=0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=128
+
+Run status group 0 (all jobs):
+  WRITE: bw=1612KiB/s (1651kB/s), 1612KiB/s-1612KiB/s (1651kB/s-1651kB/s), io=48.8MiB (51.1MB), run=30970-30970msec
+
+Disk stats (read/write):
+  sdc: ios=0/12571, merge=0/17, ticks=0/3933648, in_queue=3933624, util=99.51%
+
+```
+
+### Results - fio - Async - Large Block ###
+
+```
+jzampieron@atlas:~/Documents/Speaking/pgconf2019/tooling$ ./run_fio_async_lb.sh 
+test-randwrite: (g=0): rw=randwrite, bs=(R) 64.0KiB-64.0KiB, (W) 64.0KiB-64.0KiB, (T) 64.0KiB-64.0KiB, ioengine=libaio, iodepth=128
+fio-3.1
+Starting 1 process
+test-randwrite: Laying out IO file (1 file / 5120MiB)
+Jobs: 1 (f=1): [F(1)][100.0%][r=0KiB/s,w=10.4MiB/s][r=0,w=166 IOPS][eta 00m:00s]
+test-randwrite: (groupid=0, jobs=1): err= 0: pid=20802: Sun Mar 10 20:33:18 2019
+  write: IOPS=335, BW=20.0MiB/s (21.0MB/s)(650MiB/30998msec)
+    slat (usec): min=9, max=510862, avg=780.00, stdev=7505.28
+    clat (usec): min=1281, max=1967.9k, avg=373164.74, stdev=341048.47
+     lat (usec): min=1344, max=1967.0k, avg=373945.79, stdev=341167.30
+    clat percentiles (msec):
+     |  1.00th=[    7],  5.00th=[   33], 10.00th=[   56], 20.00th=[   93],
+     | 30.00th=[  131], 40.00th=[  180], 50.00th=[  249], 60.00th=[  351],
+     | 70.00th=[  493], 80.00th=[  642], 90.00th=[  860], 95.00th=[ 1083],
+     | 99.00th=[ 1452], 99.50th=[ 1620], 99.90th=[ 1821], 99.95th=[ 1838],
+     | 99.99th=[ 1921]
+   bw (  KiB/s): min= 3328, max=51328, per=100.00%, avg=21912.13, stdev=9867.82, samples=60
+   iops        : min=   52, max=  802, avg=342.37, stdev=154.19, samples=60
+  lat (msec)   : 2=0.10%, 4=0.34%, 10=1.36%, 20=1.38%, 50=5.45%
+  lat (msec)   : 100=13.40%, 250=28.29%, 500=20.13%, 750=15.44%, 1000=7.81%
+  lat (msec)   : 2000=6.32%
+  cpu          : usr=0.93%, sys=2.02%, ctx=8807, majf=0, minf=8
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.2%, 32=0.3%, >=64=99.4%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.1%
+     issued rwt: total=0,10399,0, short=0,0,0, dropped=0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=128
+
+Run status group 0 (all jobs):
+  WRITE: bw=20.0MiB/s (21.0MB/s), 20.0MiB/s-20.0MiB/s (21.0MB/s-21.0MB/s), io=650MiB (682MB), run=30998-30998msec
+
+Disk stats (read/write):
+  sdc: ios=0/10468, merge=0/113, ticks=0/3953796, in_queue=3953784, util=99.51%
+```
+
 ## Run 2 - SSD ##
 
 ### PG Info ###
