@@ -25,12 +25,12 @@ resource "aws_subnet" "jzpgconf2019" {
 resource "aws_subnet" "jzpgconf2019-2" {
   vpc_id            = "${aws_vpc.jzpgconf2019.id}"
   availability_zone = "us-east-1b"
-  cidr_block        = "10.1.0.0/16"
+  cidr_block        = "10.128.0.0/16"
 }
 
 resource "aws_db_subnet_group" "jzpgconf2019" {
   name       = "jzpgconf2019_dbsub"
-  subnet_ids = ["${aws_subnet.jzpgconf2019.id}"]
+  subnet_ids = [ "${aws_subnet.jzpgconf2019.id}", "${aws_subnet.jzpgconf2019-2.id}" ]
 }
 
 resource "aws_security_group" "allow_ssh" {
@@ -42,7 +42,7 @@ resource "aws_security_group" "allow_ssh" {
     # SSH (change to whatever ports you need)
     from_port   = 22
     to_port     = 22
-    protocol    = "-1"
+    protocol    = "tcp"
     # Please restrict your ingress to only necessary IPs and ports.
     # Opening to 0.0.0.0/0 can lead to security vulnerabilities.
     cidr_blocks = [ "${var.operator_ip}" ]# add a CIDR block here

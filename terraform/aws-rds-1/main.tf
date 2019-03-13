@@ -45,9 +45,10 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
+// Standardized on 4 CPU or vCPU machines for this testing.
 resource "aws_instance" "jzpgconf2019" {
   ami                         = "${data.aws_ami.ubuntu.id}"
-  instance_type               = "t2.micro"
+  instance_type               = "m4.xlarge"
   subnet_id                   = "${aws_subnet.jzpgconf2019.id}"
   associate_public_ip_address = true
   key_name                    = "${aws_key_pair.jzpgconf2019.key_name}"
