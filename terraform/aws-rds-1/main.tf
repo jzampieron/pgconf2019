@@ -17,20 +17,6 @@ resource "aws_key_pair" "jzpgconf2019" {
   public_key = "${ file( "${path.cwd}/../ssh_keypair.pub" ) }"
 }
 
-resource "aws_vpc" "jzpgconf2019" {
-  cidr_block = "10.0.0.0/16"
-}
-
-resource "aws_subnet" "jzpgconf2019" {
-  vpc_id     = "${aws_vpc.jzpgconf2019.id}"
-  cidr_block = "10.0.0.0/16"
-}
-
-resource "aws_db_subnet_group" "jzpgconf2019" {
-  name       = "jzpgconf2019_dbsub"
-  subnet_ids = ["${aws_subnet.jzpgconf2019.id}"]
-}
-
 resource "aws_db_instance" "jzpgconf2019" {
   allocated_storage    = 100 // minimum for io1
   storage_type         = "io1"
@@ -48,7 +34,7 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-trusty-14.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
   }
 
   filter {
@@ -64,7 +50,7 @@ resource "aws_instance" "jzpgconf2019" {
   instance_type               = "t2.micro"
   subnet_id                   = "${aws_subnet.jzpgconf2019.id}"
   associate_public_ip_address = true
-  key_name                    = "${aws_key_pair.jzpgconf2019}"
+  key_name                    = "${aws_key_pair.jzpgconf2019.key_name}"
 }
 
 output "JumpBoxPublicIP" {
