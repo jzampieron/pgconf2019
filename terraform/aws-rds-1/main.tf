@@ -20,6 +20,7 @@ resource "aws_key_pair" "jzpgconf2019" {
 resource "aws_db_instance" "jzpgconf2019" {
   allocated_storage    = 100 // minimum for io1
   storage_type         = "io1"
+  iops                 = "500"
   engine               = "postgres"
   engine_version       = "11.1"
   instance_class       = "db.t2.micro"

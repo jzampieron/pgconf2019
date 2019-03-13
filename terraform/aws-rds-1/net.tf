@@ -13,19 +13,19 @@
 variable "operator_ip" {} # Set via env variable.
 
 resource "aws_vpc" "jzpgconf2019" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block = "192.168.0.0/16"
 }
 
 resource "aws_subnet" "jzpgconf2019" {
   vpc_id            = "${aws_vpc.jzpgconf2019.id}"
   availability_zone = "us-east-1c"
-  cidr_block        = "10.0.0.0/16"
+  cidr_block        = "192.168.0.0/24"
 }
 
 resource "aws_subnet" "jzpgconf2019-2" {
   vpc_id            = "${aws_vpc.jzpgconf2019.id}"
   availability_zone = "us-east-1b"
-  cidr_block        = "10.128.0.0/16"
+  cidr_block        = "192.168.1.0/24"
 }
 
 resource "aws_db_subnet_group" "jzpgconf2019" {
