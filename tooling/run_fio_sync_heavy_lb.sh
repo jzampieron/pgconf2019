@@ -14,12 +14,12 @@ BASEDIR=`dirname $0`
 
 fio -filename=${DATA_DIR}/fio-sync-heavy.tmp \
     -iodepth=8 \
-    -ioengine=libaio \
+    -ioengine=${FIO_ENG} \
     -direct=1 \
     -rw=randwrite \
     -bs=64k \
     -size=5G \
-    -numjobs=64 \
+    -numjobs=${FIO_JOBS} \
     -runtime=30 \
     -group_reporting \
     -name=test-randwrite \

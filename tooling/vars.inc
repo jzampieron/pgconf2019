@@ -8,6 +8,38 @@
 #
 
 #
+# General Machine
+#
+# Typically `Darwin` on Mac.
+PLATFORM=`uname`
+
+############################################################################
+#
+# fio setup information
+#
+############################################################################
+#
+# Unfortunately, libaio is linux only b/c it's a kernel thing
+# Posix AIO is a user-space thread pool wrapper around libc sync-io
+# and does not perform equivalently. There doesn't seem to be an obvious
+# Mac equivalent.
+if [ "${PLATFORM}" == "Darwin" ]; then
+    FIO_ENG=posixaio
+    FIO_JOBS=32
+else
+    FIO_ENG=libaio
+    FIO_JOBS=64
+fi
+############################################################################
+# End fio setup
+############################################################################
+
+############################################################################
+#
+# Postgres setup information
+#
+############################################################################
+#
 # Postgres version info
 #
 # We are opting to use the non-Alpine images in order to

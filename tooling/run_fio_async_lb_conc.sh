@@ -14,10 +14,10 @@ BASEDIR=`dirname $0`
 
 fio -filename=${DATA_DIR}/fio-async-lb-conc.tmp \
     -iodepth=128 \
-    -ioengine=libaio \
+    -ioengine=${FIO_ENG} \
     -direct=1 \
     -rw=randwrite \
-    -numjobs=64 \
+    -numjobs=${FIO_JOBS} \
     -bs=64k \
     -size=5G \
     -runtime=30 \

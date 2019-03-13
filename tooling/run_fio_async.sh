@@ -14,7 +14,7 @@ BASEDIR=`dirname $0`
 
 fio -filename=${DATA_DIR}/fio-async.tmp \
     -iodepth=128 \
-    -ioengine=libaio \
+    -ioengine=${FIO_ENG} \
     -direct=1 \
     -rw=randwrite \
     -bs=4k \
