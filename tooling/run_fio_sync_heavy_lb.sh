@@ -12,7 +12,7 @@ BASEDIR=`dirname $0`
 # include common
 . ${BASEDIR}/vars.inc || die "Failed to include common setup."
 
-fio -filename=${DATA_DIR}/fio-sync-heavy.tmp \
+fio -filename=${DATA_DIR}/fio-sync-heavy-lb.tmp \
     -iodepth=8 \
     -ioengine=${FIO_ENG} \
     -direct=1 \
