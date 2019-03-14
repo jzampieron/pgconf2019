@@ -18,19 +18,20 @@ resource "aws_key_pair" "jzpgconf2019" {
 }
 
 resource "aws_db_instance" "jzpgconf2019" {
-  allocated_storage    = 100 // minimum for io1, 100 - 32TiB
-  # Must be a multiple of 1 - 50 of the allocated storage
+  # IOPS Must be a multiple of 1 - 50 of the allocated storage
   # 1000 minimum, 40k max
   # See: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS
-  iops                 = 1000
-  engine               = "postgres"
-  engine_version       = "11.1"
-  instance_class       = "db.t2.micro"
-  name                 = "bench2"
-  username             = "jzbenchpgconf2019"
-  password             = "${var.database_password}"
-  db_subnet_group_name = "${aws_db_subnet_group.jzpgconf2019.name}"
-  skip_final_snapshot  = true 
+  allocated_storage      = 100 // minimum for io1, 100 - 32TiB
+  iops                   = 1000
+  engine                 = "postgres"
+  engine_version         = "11.1"
+  instance_class         = "db.t2.micro"
+  name                   = "bench2"
+  username               = "jzbenchpgconf2019"
+  password               = "${var.database_password}"
+  db_subnet_group_name   = "${aws_db_subnet_group.jzpgconf2019.name}"
+  skip_final_snapshot    = true
+  vpc_security_group_ids = [ "${aws_security_group.allow_ssh.id}" ]
 }
 
 data "aws_ami" "ubuntu" {
