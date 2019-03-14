@@ -33,6 +33,23 @@ resource "aws_db_subnet_group" "jzpgconf2019" {
   subnet_ids = [ "${aws_subnet.jzpgconf2019.id}", "${aws_subnet.jzpgconf2019-2.id}" ]
 }
 
+resource "aws_internet_gateway" "jzpgconf2019" {
+  vpc_id = "${aws_vpc.jzpgconf2019.id}"
+}
+
+resource "aws_route_table" "jzpgconf2019" {
+  vpc_id = "${aws_vpc.jzpgconf2019.id}"
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = "${aws_internet_gateway.jzpgconf2019.id}"
+  }
+}
+
+resource "aws_route_table_association" "jzpgconf2019" {
+  subnet_id      = "${aws_subnet.jzpgconf2019.id}"
+  route_table_id = "${aws_route_table.jzpgconf2019.id}"
+}
+
 resource "aws_security_group" "allow_ssh" {
   name        = "jzpgconfig2019_allow_ssh"
   description = "Allow SSH inbound traffic"
