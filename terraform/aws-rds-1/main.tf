@@ -18,9 +18,11 @@ resource "aws_key_pair" "jzpgconf2019" {
 }
 
 resource "aws_db_instance" "jzpgconf2019" {
-  allocated_storage    = 100 // minimum for io1
-  storage_type         = "io1"
-  iops                 = "500"
+  allocated_storage    = 100 // minimum for io1, 100 - 32TiB
+  # Must be a multiple of 1 - 50 of the allocated storage
+  # 1000 minimum, 40k max
+  # See: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS
+  iops                 = 1000
   engine               = "postgres"
   engine_version       = "11.1"
   instance_class       = "db.t2.micro"
@@ -28,6 +30,7 @@ resource "aws_db_instance" "jzpgconf2019" {
   username             = "jzbenchpgconf2019"
   password             = "${var.database_password}"
   db_subnet_group_name = "${aws_db_subnet_group.jzpgconf2019.name}"
+  skip_final_snapshot  = true 
 }
 
 data "aws_ami" "ubuntu" {
@@ -53,8 +56,13 @@ resource "aws_instance" "jzpgconf2019" {
   subnet_id                   = "${aws_subnet.jzpgconf2019.id}"
   associate_public_ip_address = true
   key_name                    = "${aws_key_pair.jzpgconf2019.key_name}"
+  vpc_security_group_ids      = [ "${aws_security_group.allow_ssh.id}" ]
 }
 
 output "JumpBoxPublicIP" {
     value = "${aws_instance.jzpgconf2019.public_ip}"
+}
+
+output "DatabaseEndpoint" {
+    value = "${aws_db_instance.jzpgconf2019.endpoint}"
 }
