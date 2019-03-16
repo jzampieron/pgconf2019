@@ -56,7 +56,7 @@ resource "aws_instance" "jzpgconf2019" {
     }
 
     provisioner "file" {
-        source      = "${path.cwd}/../tooling"
+        source      = "${path.cwd}/../../tooling"
         destination = "/data"
     }
 
