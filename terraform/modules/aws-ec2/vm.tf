@@ -10,6 +10,10 @@
 # License: See included LICENSE.md
 #
 
+variable "pub_key_file" {}
+
+variable "priv_key_file" {}
+
 variable "num_clients" {
     default = "1"
 }
@@ -22,7 +26,7 @@ variable "iops" {}
 
 resource "aws_key_pair" "jzpgconf2019" {
     key_name   = "jzpgconf2019-key-${random_string.unique.result}"
-    public_key = "${ file( "${path.module}/../../ssh_keypair.pub" ) }"
+    public_key = "${var.pub_key_file}"
 }
 
 data "aws_ami" "ubuntu" {
@@ -84,7 +88,7 @@ resource "aws_instance" "jzpgconf2019" {
         host         = "${self.public_ip}"
         user         = "ubuntu"
         timeout      = "60s"
-        private_key  = "${ file( "${path.module}/../../ssh_keypair" ) }"
+        private_key  = "${var.priv_key_file}"
     }
 
     provisioner "remote-exec" {

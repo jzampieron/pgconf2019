@@ -18,10 +18,9 @@ module "aws-ec2" {
   operator_ip = "${var.operator_ip}"
   inst_type = "m5.xlarge"
   disk_size = 1000
-  iops      = 1000
+  iops      = 2000
   pub_key_file  = "${ file( "${path.cwd}/../ssh_keypair.pub" ) }"
   priv_key_file = "${ file( "${path.cwd}/../ssh_keypair" ) }"
-
 }
 
 output "vm_ip" {

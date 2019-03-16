@@ -10,5 +10,5 @@ sleep 5
 apt-get -y update
 sync
 sleep 5
-apt-get -y install docker.io postgresql-client-10
+apt-get -y install docker.io postgresql-client-10 iotop sysstat
 usermod -a -G docker ubuntu

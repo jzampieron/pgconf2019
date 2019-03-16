@@ -61,6 +61,7 @@ docker run \
        -v "${DATA_DIR}:/var/lib/postgresql/data" \
        -v "${LOG_DIR}:/logs" \
        -e 'POSTGRES_DB=bench2' \
+       -e "POSTGRES_USERNAME=${PGUSER}" \
        -e "POSTGRES_PASSWORD=${PGPASS}" \
        -e "POSTGRES_INITDB_ARGS=--waldir /logs --data-checksums" \
        postgres:${PG_VER}
