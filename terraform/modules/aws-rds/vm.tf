@@ -47,7 +47,7 @@ resource "aws_instance" "jzpgconf2019" {
 
     connection {
         type         = "ssh"
-        host         = "${aws_instance.jzpgconf2019.public_ip}"
+        host         = "${self.public_ip}"
         user         = "ubuntu"
         timeout      = "60s"
         private_key  = "${ file( "${path.module}/../../ssh_keypair" ) }"
