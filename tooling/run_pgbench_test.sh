@@ -35,4 +35,4 @@ docker run \
        -e "PGPORT=${SRV_PORT}" \
        -e "PGPASSWORD=${PGPASS}" \
        -it postgres:${PG_VER} \
-       pgbench -U ${PGUSER} -P 10 -r -c 100 -j ${CORES} -T 600 bench2
+       pgbench -U ${PGUSER} -P 10 -r -c 100 -j ${CORES} -T 300 bench2
