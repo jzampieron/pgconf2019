@@ -67,5 +67,5 @@ SRV_PORT=5432
 # We split the data and WAL Logs, as is typical for
 # optimized postgres installs.
 #
-DATA_DIR=/opt/pgdata/data
-LOG_DIR=/opt/pgdata/logs
+DATA_DIR=/data/pgdata/data
+LOG_DIR=/data/pgdata/logs

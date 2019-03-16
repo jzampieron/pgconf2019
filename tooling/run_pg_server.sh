@@ -41,6 +41,16 @@ BASEDIR=`dirname $0`
 echo "Data Dir: ${DATA_DIR}"
 echo "Log Dir: ${LOG_DIR}"
 
+if [ ! -d "${DATA_DIR}" ]; then
+    echo "Creating Data Dir"
+    mkdir -p "${DATA_DIR}"
+fi
+
+if [ ! -d "${LOG_DIR}" ]; then
+    echo "Creating Log Dir"
+    mkdir -p "${LOG_DIR}"
+fi
+
 docker run \
        --rm \
        --name postgres_test \

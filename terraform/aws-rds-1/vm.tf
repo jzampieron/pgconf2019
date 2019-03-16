@@ -51,7 +51,10 @@ resource "aws_instance" "jzpgconf2019" {
     provisioner "remote-exec" {
         inline = [
             "sudo mkdir -p /data",
-            "sudo chown ubuntu /data"
+            "sudo chown ubuntu /data",
+            "sudo apt-get -y update",
+            "sudo apt-get -y install docker.io",
+            "sudo usermod -a -G docker ubuntu"
         ]
     }
 
