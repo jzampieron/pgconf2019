@@ -20,3 +20,7 @@ module "aws-rds" {
   disk_size = 1000
   iops      = 1000
 }
+
+output "vm_ip" {
+    value = "${module.aws-rds.JumpBoxPublicIP}"
+}
