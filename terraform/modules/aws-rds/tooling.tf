@@ -11,15 +11,15 @@
 #
 
 variable "tooling_path" {
-    default = "../../tooling"
+    default = "../../../tooling"
 }
 
 // Setup the tooling file for use.
 data "template_file" "jzpgconf_test_var" {
-  template = "${ file( "${path.cwd}/${var.tooling_path}/vars.inc.tpl" ) }"
+  template = "${ file( "${path.module}/${var.tooling_path}/vars.inc.tpl" ) }"
   vars = {
     pg_user   = "${var.database_username}"
-    pg_pass   = "${var.database_password}"
+    pg_pass   = "${random_string.dbpassword.result}"
     pg_dbname = "${var.database_name}"
     pg_host   = "${aws_db_instance.jzpgconf2019.address}"
     pg_port   = "${aws_db_instance.jzpgconf2019.port}"

@@ -11,8 +11,8 @@
 #
 
 resource "aws_key_pair" "jzpgconf2019" {
-    key_name   = "jzpgconf2019-key"
-    public_key = "${ file( "${path.cwd}/../ssh_keypair.pub" ) }"
+    key_name   = "jzpgconf2019-key-${random_string.unique.result}"
+    public_key = "${ file( "${path.module}/../../ssh_keypair.pub" ) }"
 }
 
 data "aws_ami" "ubuntu" {
@@ -45,7 +45,7 @@ resource "aws_instance" "jzpgconf2019" {
         host         = "${aws_instance.jzpgconf2019.public_ip}"
         user         = "ubuntu"
         timeout      = "10s"
-        private_key  = "${ file( "${path.cwd}/../ssh_keypair" ) }"
+        private_key  = "${ file( "${path.module}/../../ssh_keypair" ) }"
     }
 
     provisioner "remote-exec" {
@@ -60,12 +60,12 @@ resource "aws_instance" "jzpgconf2019" {
     }
 
     provisioner "file" {
-        source      = "${path.cwd}/${var.tooling_path}"
+        source      = "${path.module}/${var.tooling_path}"
         destination = "/data"
     }
 
     provisioner "file" {
-        source      = "${path.cwd}/${var.tooling_path}"
+        source      = "${path.module}/${var.tooling_path}"
         destination = "/data"
     }
 

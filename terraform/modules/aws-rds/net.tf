@@ -29,7 +29,7 @@ resource "aws_subnet" "jzpgconf2019-2" {
 }
 
 resource "aws_db_subnet_group" "jzpgconf2019" {
-    name       = "jzpgconf2019_dbsub"
+    name       = "jzpgconf2019_dbsub_${random_string.unique.result}"
     subnet_ids = [
         "${aws_subnet.jzpgconf2019.id}",
         "${aws_subnet.jzpgconf2019-2.id}"
