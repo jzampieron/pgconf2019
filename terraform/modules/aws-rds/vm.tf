@@ -48,20 +48,16 @@ resource "aws_instance" "jzpgconf2019" {
         private_key  = "${ file( "${path.module}/../../ssh_keypair" ) }"
     }
 
-    provisioner "remote-exec" {
-        inline = [
-            "sudo mkdir -p /data",
-            "sudo chown ubuntu /data",
-            "sudo apt-get -y update",
-            "sudo apt-get -y install docker.io",
-            "sudo apt-get -y install postgresql-client-10",
-            "sudo usermod -a -G docker ubuntu"
-        ]
+    provisioner "file" {
+        source      = "${path.module}/files/setup_vm.sh"
+        destination = "/tmp/setup_vm.sh"
     }
 
-    provisioner "file" {
-        source      = "${path.module}/${var.tooling_path}"
-        destination = "/data"
+    provisioner "remote-exec" {
+        inline = [
+            "sudo chmod 755 /tmp/setup_vm.sh",
+            "sudo /tmp/setup_vm.sh"
+        ]
     }
 
     provisioner "file" {

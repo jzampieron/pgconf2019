@@ -25,3 +25,8 @@ data "template_file" "jzpgconf_test_var" {
     pg_port   = "${aws_db_instance.jzpgconf2019.port}"
   }
 }
+
+resource "local_file" "vars_file" {
+    content  = "${data.template_file.jzpgconf_test_var.rendered}"
+    filename = "${path.cwd}/vars.inc"
+}
