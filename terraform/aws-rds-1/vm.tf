@@ -74,6 +74,11 @@ resource "aws_instance" "jzpgconf2019" {
         destination = "/data/tooling/vars.inc"
     }
 
+    provisioner "remote-exec" {
+        inline = [
+            "chmod 755 /data/tooling/*.sh"
+        ]
+    }
 }
 
 output "JumpBoxPublicIP" {
