@@ -10,6 +10,14 @@
 # License: See included LICENSE.md
 #
 
+variable "database_name" {
+  default = "bench2"
+}
+
+variable "database_username" {
+  default = "jzbenchpgconf2019"
+}
+
 variable "database_password" {} // Set via env var.
 
 resource "aws_db_instance" "jzpgconf2019" {
@@ -21,8 +29,8 @@ resource "aws_db_instance" "jzpgconf2019" {
   engine                 = "postgres"
   engine_version         = "11.1"
   instance_class         = "db.t2.micro"
-  name                   = "bench2"
-  username               = "jzbenchpgconf2019"
+  name                   = "${var.database_name}"
+  username               = "${var.database_username}"
   password               = "${var.database_password}"
   db_subnet_group_name   = "${aws_db_subnet_group.jzpgconf2019.name}"
   skip_final_snapshot    = true

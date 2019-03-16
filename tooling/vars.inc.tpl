@@ -51,15 +51,15 @@ PG_VER=11.1
 #
 # Username/Password
 #
-PGUSER=postgres
-PGPASS=postgres
-PGDBNAME=bench2
+PGUSER=${pg_user}
+PGPASS=${pg_pass}
+PGDBNAME=${pg_dbname}
 
 #
 # Network information
 #
-SRV_HOST=localhost
-SRV_PORT=5432
+SRV_HOST=${pg_host}
+SRV_PORT=${pg_port}
 
 #
 # Make a couple test data directories

@@ -59,8 +59,18 @@ resource "aws_instance" "jzpgconf2019" {
     }
 
     provisioner "file" {
-        source      = "${path.cwd}/../../tooling"
+        source      = "${path.cwd}/${var.tooling_path}"
         destination = "/data"
+    }
+
+    provisioner "file" {
+        source      = "${path.cwd}/${var.tooling_path}"
+        destination = "/data"
+    }
+
+    provisioner "file" {
+        content     = "${data.template_file.jzpgconf_test_var.rendered}"
+        destination = "/data/tooling/vars.inc"
     }
 
 }
