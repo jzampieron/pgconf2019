@@ -11,6 +11,17 @@ Docker image per included tooling.
 ### Results - PGBench ###
 
 ```
+transaction type: <builtin: TPC-B (sort of)>
+scaling factor: 70
+query mode: simple
+number of clients: 100
+number of threads: 4
+duration: 300 s
+number of transactions actually processed: 1152871
+latency average = 25.992 ms
+latency stddev = 15.930 ms
+tps = 3842.402272 (including connections establishing)
+tps = 3842.585781 (excluding connections establishing)
 ```
 
 ### Results - fio - Sync Heavy ###

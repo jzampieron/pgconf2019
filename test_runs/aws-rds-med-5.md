@@ -1,6 +1,6 @@
-# Test Runs on AWS-RDS-Med-3 #
+# Test Runs on AWS-RDS-Med-5 #
 
-See `terraform/aws-rds-med-3/` for setup details.
+See `terraform/aws-rds-med-5/` for setup details.
 
 ## Run 1 ##
 
@@ -10,7 +10,8 @@ Docker image per included tooling.
 
 ### Results - PGBench ###
 
-This is about the reasonable iops limit for a m5.xlarge.
+Dashboards indicates CPU bound at 100% use.
+Putting 16k iops on a m5.xlarge is a waste of money.
 
 ```
 transaction type: <builtin: TPC-B (sort of)>
@@ -19,11 +20,11 @@ query mode: simple
 number of clients: 100
 number of threads: 4
 duration: 300 s
-number of transactions actually processed: 1412843
-latency average = 21.214 ms
-latency stddev = 9.059 ms
-tps = 4708.856788 (including connections establishing)
-tps = 4709.044373 (excluding connections establishing)
+number of transactions actually processed: 1400465
+latency average = 21.392 ms
+latency stddev = 21.357 ms
+tps = 4667.600630 (including connections establishing)
+tps = 4667.865967 (excluding connections establishing)
 ```
 
 ### Results - fio - Sync Heavy ###

@@ -6,7 +6,7 @@ Code and Presentation Materials for Postgres Conference 2019
 All of the tooling and testing is setup to be as automated and reproducible
 as reasonable.
 
-Infrastructure is created using _terraform_ and the `tooling/` folder
+Infrastructure is created using _terraform_ and the `modules/aws-rds/tooling/` folder
 contains the shell scripts used to run the tests.
 
 The terraform code is divided into test _scenarios_.
@@ -35,7 +35,10 @@ installed and in your `PATH` and are on a Unix-like OS.
     and is in the same virtual network as your hosted instance.
 8. You can ssh to this VM and in the `/data/tooling` folder under the default
     username (e.g. `ubuntu` on AWS), you will find shell scripts that
-    run the tests.
+    run the tests. Typical workflow is:
+    - `./run_pgbench_init.sh`
+    - `./run_pgbench_test.sh`
+    - Collect results.
 9. When finished, run `terraform destroy` to clean up.
 
 # Legal, Thanks and Other Disclaimers #
