@@ -53,8 +53,9 @@ resource "aws_instance" "jzpgconf2019" {
             "sudo mkdir -p /data",
             "sudo chown ubuntu /data",
             "sudo apt-get -y update",
-            "sudo apt-get -y install docker.io postgresql-client-10",
-            "sudo usermod -a -G docker ubuntu",
+            "sudo apt-get -y install docker.io",
+            "sudo apt-get -y install postgresql-client-10",
+            "sudo usermod -a -G docker ubuntu"
         ]
     }
 

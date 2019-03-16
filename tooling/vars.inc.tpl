@@ -23,7 +23,7 @@ PLATFORM=`uname`
 # Posix AIO is a user-space thread pool wrapper around libc sync-io
 # and does not perform equivalently. There doesn't seem to be an obvious
 # Mac equivalent.
-if [ "${PLATFORM}" == "Darwin" ]; then
+if [ "$${PLATFORM}" == "Darwin" ]; then
     FIO_ENG=posixaio
     FIO_JOBS=32
 else
