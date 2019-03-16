@@ -10,6 +10,10 @@
 # License: See included LICENSE.md
 #
 
+variable "num_clients" {
+    default = "1"
+}
+
 resource "aws_key_pair" "jzpgconf2019" {
     key_name   = "jzpgconf2019-key-${random_string.unique.result}"
     public_key = "${ file( "${path.module}/../../ssh_keypair.pub" ) }"
@@ -33,6 +37,7 @@ data "aws_ami" "ubuntu" {
 
 // Standardized on 4 CPU or vCPU machines for this testing.
 resource "aws_instance" "jzpgconf2019" {
+    count                       = "${var.num_clients}"
     ami                         = "${data.aws_ami.ubuntu.id}"
     instance_type               = "m4.xlarge"
     subnet_id                   = "${aws_subnet.jzpgconf2019.id}"
@@ -84,6 +89,6 @@ resource "aws_instance" "jzpgconf2019" {
 }
 
 output "JumpBoxPublicIP" {
-    value = "${aws_instance.jzpgconf2019.public_ip}"
+    value = [ "${aws_instance.jzpgconf2019.*.public_ip}" ]
 }
 
