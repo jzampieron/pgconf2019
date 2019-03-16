@@ -11,7 +11,7 @@
 #
 
 variable "tooling_path" {
-    default = "../../../tooling"
+    default = "tooling"
 }
 
 // Setup the tooling file for use.

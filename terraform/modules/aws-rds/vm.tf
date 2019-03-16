@@ -44,8 +44,14 @@ resource "aws_instance" "jzpgconf2019" {
         type         = "ssh"
         host         = "${aws_instance.jzpgconf2019.public_ip}"
         user         = "ubuntu"
-        timeout      = "10s"
+        timeout      = "60s"
         private_key  = "${ file( "${path.module}/../../ssh_keypair" ) }"
+    }
+
+    provisioner "remote-exec" {
+        inline = [
+            "sudo apt-get -y update"
+        ]
     }
 
     provisioner "file" {

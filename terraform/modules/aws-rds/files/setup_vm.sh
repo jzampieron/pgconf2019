@@ -2,8 +2,13 @@
 
 # Setup a VM for testing.
 
+export DEBIAN_FRONTEND=noninteractive
+
 mkdir -p /data
 chown ubuntu /data
-apt-get -y update \
-    && apt-get -y install docker.io postgresql-client-10
+sleep 5
+apt-get -y update
+sync
+sleep 5
+apt-get -y install docker.io postgresql-client-10
 usermod -a -G docker ubuntu
