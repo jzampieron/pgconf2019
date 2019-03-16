@@ -24,7 +24,7 @@ resource "aws_db_instance" "jzpgconf2019" {
   # IOPS Must be a multiple of 1 - 50 of the allocated storage
   # 1000 minimum, 40k max
   # See: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS
-  allocated_storage      = 100 // minimum for io1, 100 - 32TiB
+  allocated_storage      = 1000 // minimum for io1, 100 - 32TiB
   iops                   = 1000
   engine                 = "postgres"
   engine_version         = "11.1"
