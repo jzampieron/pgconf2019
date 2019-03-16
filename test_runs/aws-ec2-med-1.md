@@ -26,66 +26,22 @@ tps = 3642.813195 (including connections establishing)
 tps = 3642.860173 (excluding connections establishing)
 ```
 
-## Run 2 ##
-
-- 200 clients.
-
-### PG Info ###
-
-Docker image per included tooling.
-
-### Results - PGBench ###
-
-```
-transaction type: <builtin: TPC-B (sort of)>
-scaling factor: 70
-query mode: simple
-number of clients: 200
-number of threads: 4
-duration: 300 s
-number of transactions actually processed: 3172049
-latency average = 18.869 ms
-latency stddev = 10.786 ms
-tps = 10571.821105 (including connections establishing)
-tps = 10572.344976 (excluding connections establishing)
-```
-
-## Run 3 ##
-
-- 400 clients.
-
-### PG Info ###
-
-Docker image per included tooling.
-
-### Results - PGBench ###
-
-```
-transaction type: <builtin: TPC-B (sort of)>
-scaling factor: 70
-query mode: simple
-number of clients: 400
-number of threads: 4
-duration: 300 s
-number of transactions actually processed: 3066434
-latency average = 38.969 ms
-latency stddev = 36.175 ms
-tps = 10218.187106 (including connections establishing)
-tps = 10218.627040 (excluding connections establishing)
-```
-
 ### Results - fio - Sync Heavy ###
 
-N/A for hosted PG.
+```
+```
 
 ### Results - fio - Sync Heavy - Large Block ###
 
-N/A for hosted PG.
+```
+```
 
 ### Results - fio - Async ###
 
-N/A for hosted PG.
+```
+```
 
 ### Results - fio - Async - Large Block ###
 
-N/A for hosted PG.
+```
+```
