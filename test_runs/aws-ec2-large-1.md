@@ -2,6 +2,18 @@
 
 See `terraform/aws-ec2-large-1/` for setup details.
 
+## Cost ##
+
+Using: https://calculator.s3.amazonaws.com/index.html
+
+| Service     | Cost        |
+| ----------- | ----------- |
+| Compute     | 2213.57 USD |
+| EBS Vol     | 500     USD |
+| EBS IOPS    | 520     USD |
+| Snaps       | 200     USD |
+| ** Total ** | 3433.57 USD |
+
 ## Run 1 ##
 
 - 4x 1TB x 2k IOPS (io1) x RAID0
