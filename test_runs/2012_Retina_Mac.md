@@ -28,6 +28,10 @@ Mac OS 10.13.6
 
 File System is *APFS*.
 
+## Cost ##
+
+- `~$3000.` in 2012.
+
 ## Run 1 ##
 
 ### PG Info ###
@@ -215,5 +219,5 @@ test-randwrite: (groupid=0, jobs=1): err= 0: pid=139: Wed Mar 13 06:49:38 2019
 
 Run status group 0 (all jobs):
   WRITE: bw=185MiB/s (194MB/s), 185MiB/s-185MiB/s (194MB/s-194MB/s), io=5120MiB (5369MB), run=27713-27713msec
-Jeffreys-MacBook-Pro:tooling jzampieron$ 
+Jeffreys-MacBook-Pro:tooling jzampieron$
 ```

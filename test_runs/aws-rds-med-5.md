@@ -2,6 +2,17 @@
 
 See `terraform/aws-rds-med-5/` for setup details.
 
+## Cost ##
+
+- Per the RDS Cost Estimator:
+
+| Estimated **monthly** costs | -------------- |
+| ----------------------- | ------------------ |
+| DB Instance             | 259.88 USD         |
+| Storage                 | 125.00 USD         |
+| Provisioned IOPS        | 1600.00 USD        |
+| **Total**               | **1984.88 USD**    |
+
 ## Run 1 ##
 
 ### PG Info ###

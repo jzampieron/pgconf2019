@@ -34,6 +34,10 @@ Kubutu 18.04.1
 
 2 Test Runs, 1 on each drive.
 
+## Cost ##
+
+- Unknown. Sub-$2000
+
 ## Run 1 - HDD ##
 
 ### PG Info ###
@@ -45,7 +49,7 @@ Using the Seagate HDD mounted on `/xfs`:
 ### Results - PGBench ###
 
 ```
-Run 1: 
+Run 1:
 transaction type: <builtin: TPC-B (sort of)>
 scaling factor: 70
 query mode: simple
@@ -62,13 +66,13 @@ tps = 337.468786 (excluding connections establishing)
 ### Results - fio - Sync Heavy ###
 
 ```
-jzampieron@atlas:~/Documents/Speaking/pgconf2019/tooling$ ./run_fio_sync_heavy.sh 
+jzampieron@atlas:~/Documents/Speaking/pgconf2019/tooling$ ./run_fio_sync_heavy.sh
 test-randwrite: (g=0): rw=randwrite, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=8
 ...
 fio-3.1
 Starting 64 processes
 test-randwrite: Laying out IO file (1 file / 5120MiB)
-Jobs: 64 (f=64): [w(64)][100.0%][r=0KiB/s,w=712KiB/s][r=0,w=178 IOPS][eta 00m:00s] 
+Jobs: 64 (f=64): [w(64)][100.0%][r=0KiB/s,w=712KiB/s][r=0,w=178 IOPS][eta 00m:00s]
 test-randwrite: (groupid=0, jobs=64): err= 0: pid=20345: Sun Mar 10 20:29:42 2019
   write: IOPS=568, BW=2274KiB/s (2328kB/s)(67.4MiB/30358msec)
     slat (usec): min=4, max=2921.3k, avg=48969.75, stdev=204387.13
@@ -104,7 +108,7 @@ Disk stats (read/write):
 ### Results - fio - Sync Heavy - Large Block ###
 
 ```
-jzampieron@atlas:~/Documents/Speaking/pgconf2019/tooling$ ./run_fio_sync_heavy_lb.sh 
+jzampieron@atlas:~/Documents/Speaking/pgconf2019/tooling$ ./run_fio_sync_heavy_lb.sh
 test-randwrite: (g=0): rw=randwrite, bs=(R) 64.0KiB-64.0KiB, (W) 64.0KiB-64.0KiB, (T) 64.0KiB-64.0KiB, ioengine=libaio, iodepth=8
 ...
 fio-3.1
@@ -146,12 +150,12 @@ Disk stats (read/write):
 ### Results - fio - Async ###
 
 ```
-jzampieron@atlas:~/Documents/Speaking/pgconf2019/tooling$ ./run_fio_async.sh 
+jzampieron@atlas:~/Documents/Speaking/pgconf2019/tooling$ ./run_fio_async.sh
 test-randwrite: (g=0): rw=randwrite, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=128
 fio-3.1
 Starting 1 process
 test-randwrite: Laying out IO file (1 file / 5120MiB)
-Jobs: 1 (f=1): [F(1)][100.0%][r=0KiB/s,w=676KiB/s][r=0,w=169 IOPS][eta 00m:00s] 
+Jobs: 1 (f=1): [F(1)][100.0%][r=0KiB/s,w=676KiB/s][r=0,w=169 IOPS][eta 00m:00s]
 test-randwrite: (groupid=0, jobs=1): err= 0: pid=20778: Sun Mar 10 20:32:19 2019
   write: IOPS=403, BW=1612KiB/s (1651kB/s)(48.8MiB/30970msec)
     slat (usec): min=6, max=361404, avg=313.39, stdev=3422.28
@@ -186,7 +190,7 @@ Disk stats (read/write):
 ### Results - fio - Async - Large Block ###
 
 ```
-jzampieron@atlas:~/Documents/Speaking/pgconf2019/tooling$ ./run_fio_async_lb.sh 
+jzampieron@atlas:~/Documents/Speaking/pgconf2019/tooling$ ./run_fio_async_lb.sh
 test-randwrite: (g=0): rw=randwrite, bs=(R) 64.0KiB-64.0KiB, (W) 64.0KiB-64.0KiB, (T) 64.0KiB-64.0KiB, ioengine=libaio, iodepth=128
 fio-3.1
 Starting 1 process
@@ -325,7 +329,7 @@ Run status group 0 (all jobs):
 ### Results - fio - Async ###
 
 ```
-jzampieron@atlas:~/Documents/Speaking/pgconf2019/tooling$ ./run_fio_async.sh 
+jzampieron@atlas:~/Documents/Speaking/pgconf2019/tooling$ ./run_fio_async.sh
 test-randwrite: (g=0): rw=randwrite, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=128
 fio-3.1
 Starting 1 process
@@ -362,7 +366,7 @@ Run status group 0 (all jobs):
 ### Results - fio - Async - Large Block ###
 
 ```
-jzampieron@atlas:~/Documents/Speaking/pgconf2019/tooling$ ./run_fio_async_lb.sh 
+jzampieron@atlas:~/Documents/Speaking/pgconf2019/tooling$ ./run_fio_async_lb.sh
 test-randwrite: (g=0): rw=randwrite, bs=(R) 64.0KiB-64.0KiB, (W) 64.0KiB-64.0KiB, (T) 64.0KiB-64.0KiB, ioengine=libaio, iodepth=128
 fio-3.1
 Starting 1 process

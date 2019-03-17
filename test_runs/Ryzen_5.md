@@ -22,10 +22,13 @@ Kubutu 18.04.1
 | File System           | btrfs - raid1     |
 | --------------------- | ----------------- |
 
+## Cost ##
+
+- `~$1200.00`
 
 ## Run 1 ##
 
-- File system is *btrfs* RAID1 
+- File system is *btrfs* RAID1
 
 ### PG Info ###
 
@@ -50,7 +53,7 @@ tps = 6250.004449 (excluding connections establishing)
 ### Results - fio - Sync Heavy ###
 
 ```
-jzampieron@hercules:~/Documents/Speaking/pgconf2019/terraform/modules/aws-ec2/tooling$ ./run_fio_sync_heavy.sh 
+jzampieron@hercules:~/Documents/Speaking/pgconf2019/terraform/modules/aws-ec2/tooling$ ./run_fio_sync_heavy.sh
 test-randwrite: (g=0): rw=randwrite, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=8
 ...
 fio-3.1
@@ -88,7 +91,7 @@ jzampieron@hercules:~/Documents/Speaking/pgconf2019/terraform/modules/aws-ec2/to
 ### Results - fio - Sync Heavy - Large Block ###
 
 ```
-jzampieron@hercules:~/Documents/Speaking/pgconf2019/terraform/modules/aws-ec2/tooling$ ./run_fio_sync_heavy_lb.sh 
+jzampieron@hercules:~/Documents/Speaking/pgconf2019/terraform/modules/aws-ec2/tooling$ ./run_fio_sync_heavy_lb.sh
 test-randwrite: (g=0): rw=randwrite, bs=(R) 64.0KiB-64.0KiB, (W) 64.0KiB-64.0KiB, (T) 64.0KiB-64.0KiB, ioengine=libaio, iodepth=8
 ...
 fio-3.1
@@ -127,7 +130,7 @@ jzampieron@hercules:~/Documents/Speaking/pgconf2019/terraform/modules/aws-ec2/to
 ### Results - fio - Pathological Sync ###
 
 ```
-jzampieron@hercules:~/Documents/Speaking/pgconf2019/terraform/modules/aws-ec2/tooling$ ./run_fio_pathological_sync.sh 
+jzampieron@hercules:~/Documents/Speaking/pgconf2019/terraform/modules/aws-ec2/tooling$ ./run_fio_pathological_sync.sh
 test-randwrite: (g=0): rw=randwrite, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=8
 ...
 fio-3.1
@@ -160,13 +163,13 @@ test-randwrite: (groupid=0, jobs=64): err= 0: pid=4968: Sat Mar 16 19:52:46 2019
 
 Run status group 0 (all jobs):
   WRITE: bw=13.6MiB/s (14.2MB/s), 13.6MiB/s-13.6MiB/s (14.2MB/s-14.2MB/s), io=407MiB (427MB), run=30018-30018msec
-jzampieron@hercules:~/Documents/Speaking/pgconf2019/terraform/modules/aws-ec2/tooling$ 
+jzampieron@hercules:~/Documents/Speaking/pgconf2019/terraform/modules/aws-ec2/tooling$
 ```
 
 ### Results - fio - Async ###
 
 ```
-jzampieron@hercules:~/Documents/Speaking/pgconf2019/terraform/modules/aws-ec2/tooling$ ./run_fio_async.sh 
+jzampieron@hercules:~/Documents/Speaking/pgconf2019/terraform/modules/aws-ec2/tooling$ ./run_fio_async.sh
 test-randwrite: (g=0): rw=randwrite, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=128
 fio-3.1
 Starting 1 process
@@ -197,13 +200,13 @@ test-randwrite: (groupid=0, jobs=1): err= 0: pid=5061: Sat Mar 16 19:53:36 2019
 
 Run status group 0 (all jobs):
   WRITE: bw=159MiB/s (167MB/s), 159MiB/s-159MiB/s (167MB/s-167MB/s), io=4944MiB (5184MB), run=31026-31026msec
-jzampieron@hercules:~/Documents/Speaking/pgconf2019/terraform/modules/aws-ec2/tooling$ 
+jzampieron@hercules:~/Documents/Speaking/pgconf2019/terraform/modules/aws-ec2/tooling$
 ```
 
 ### Results - fio - Async - Large Block ###
 
 ```
-jzampieron@hercules:~/Documents/Speaking/pgconf2019/terraform/modules/aws-ec2/tooling$ ./run_fio_async_lb.sh 
+jzampieron@hercules:~/Documents/Speaking/pgconf2019/terraform/modules/aws-ec2/tooling$ ./run_fio_async_lb.sh
 test-randwrite: (g=0): rw=randwrite, bs=(R) 64.0KiB-64.0KiB, (W) 64.0KiB-64.0KiB, (T) 64.0KiB-64.0KiB, ioengine=libaio, iodepth=128
 fio-3.1
 Starting 1 process
